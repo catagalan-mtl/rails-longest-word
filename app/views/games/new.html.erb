@@ -1,0 +1,17 @@
+<div class="container m-5 w-70">
+  <h1>New game</h1>
+  <div class="d-flex justify-content-between mt-2">
+    <% @letters.each do |letter| %>
+      <strong style="font-family: 'Courier New', monospace; font-size: x-large;" class="bg-primary text-white text-center shadow p-1 px-3"><%=letter %></strong>
+    <% end %>
+  </div>
+  <div class="mt-3">
+    <p class="mb-1" for="longest-word">What is the longest word you can find?</p>
+    <form action="/score" method="post" data-turbo="false" class="input-group">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="text" class="form-control" id="longest-word" name="word" placeholder="Type your word here">
+      <input id="token" name="token" type="hidden" value="<%=@letters.join(", ")%>"/>
+      <button class="btn btn-outline-secondary" type="submit">Play</button>
+    </form>
+  </div>
+</div>
